@@ -48,9 +48,9 @@ export const TodoProvider = ({children}) =>{
         const localStorageData = window.localStorage.getItem("todos");
         const parsedData = JSON.parse(localStorageData);
     
-        if (parsedData && parsedData.length > 0) {
-        const lastTodo = parsedData[parsedData.length - 1];
-        return lastTodo.id;
+        if (parsedData && parsedData.todos.length > 0) {
+        const lastTodo = parsedData.todos[parsedData.todos.length - 1];
+        return lastTodo.id++;
         }
     
         // Return a default value if localStorage is empty
@@ -111,7 +111,6 @@ export const TodoProvider = ({children}) =>{
             type: "UPDATE_TODO_VALUE",
             payLoad: value
         });
-
         
     }, []);
 
@@ -122,8 +121,7 @@ export const TodoProvider = ({children}) =>{
         updateTodoValue(task);
         setEditing(prevState => ({edit: !prevState.edit, id}));
         
-        console.log(editing);
-    }, [updateTodoValue, editing]);
+    }, [updateTodoValue]);
 
     // function for updating the todo list
     const updateTodoList = useCallback((task) =>{
@@ -132,7 +130,6 @@ export const TodoProvider = ({children}) =>{
                 ...todo,
                 task
             }: todo
-
 
             return newState
         });

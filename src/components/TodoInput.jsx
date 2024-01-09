@@ -10,9 +10,12 @@ const TodoInput = () =>{
 
 
     const [id, setId] = useState( intialId); // state for dynamic id creation
+    console.log(id);
     
     const handleCreateTodoCompleted = () =>{
         let todo;
+
+        console.log(editing.edit);
         if(todoValue !== "" && editing.edit === false){
             todo = {
                 id: id,
@@ -28,8 +31,9 @@ const TodoInput = () =>{
         }
 
         updateTodoValue("");
+
         setEditing({
-            state: false,
+            edit: false,
             task: ""
         });
     }
