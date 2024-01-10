@@ -50,7 +50,8 @@ export const TodoProvider = ({children}) =>{
     
         if (parsedData && parsedData.todos.length > 0) {
         const lastTodo = parsedData.todos[parsedData.todos.length - 1];
-        return lastTodo.id++;
+        const id = lastTodo.id + 1;
+        return id;
         }
     
         // Return a default value if localStorage is empty
@@ -117,7 +118,6 @@ export const TodoProvider = ({children}) =>{
     // for updating the todo message
     const updateTodoTask = useCallback((id,task) =>{
 
-        console.log(task, id);
         updateTodoValue(task);
         setEditing(prevState => ({edit: !prevState.edit, id}));
         

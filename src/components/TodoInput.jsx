@@ -10,12 +10,11 @@ const TodoInput = () =>{
 
 
     const [id, setId] = useState( intialId); // state for dynamic id creation
-    console.log(id);
+    // console.log(id);
     
     const handleCreateTodoCompleted = () =>{
         let todo;
 
-        console.log(editing.edit);
         if(todoValue !== "" && editing.edit === false){
             todo = {
                 id: id,
@@ -46,6 +45,9 @@ const TodoInput = () =>{
                 className={`focus:outline-bright-blue w-full h-[3.5rem] pl-4 rounded ${theme ? "bg-dark-theme-blue-400 text-dark-theme-blue-200" :"bg-light-theme-gray text-dark-theme-blue-500"} font-josefin font-normal text-size-400 xl:text-size-600`}
                 onChange={(e) => updateTodoValue(e.target.value)}
                 onBlur = {handleCreateTodoCompleted}
+                onKeyDown={(e) =>{
+                    (e.isComposing || e.key === "Enter") && handleCreateTodoCompleted();
+                }}
                 value={todoValue}    
             />
         </div>
